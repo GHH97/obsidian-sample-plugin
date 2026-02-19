@@ -1,11 +1,9 @@
 {
-	"id": "sample-plugin",
-	"name": "Sample Plugin",
+	"id": "otoracle-pipeline",
+	"name": "Otoracle Pipeline",
 	"version": "1.0.0",
 	"minAppVersion": "0.15.0",
-	"description": "Demonstrates some of the capabilities of the Obsidian API.",
-	"author": "Obsidian",
-	"authorUrl": "https://obsidian.md",
-	"fundingUrl": "https://obsidian.md/pricing",
-	"isDesktopOnly": false
+	"description": "Dashboard for the Otoracle ENT content ingestion pipeline — run, monitor, retry, and reconcile.",
+	"author": "GHH97",
+	"isDesktopOnly": true
 }

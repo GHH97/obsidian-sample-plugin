@@ -1,8 +1,267 @@
-/*
+/* ── Otoracle Pipeline Plugin ─────────────────────────────────────────────── */
 
-This CSS file will be included with your plugin, and
-available in the app when your plugin is enabled.
+/* Header */
+.otoracle-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 8px 10px;
+	border-bottom: 1px solid var(--background-modifier-border);
+	gap: 6px;
+	flex-wrap: wrap;
+	position: sticky;
+	top: 0;
+	background: var(--background-primary);
+	z-index: 1;
+}
 
-If your plugin does not need CSS, delete this file.
+.otoracle-header h4 {
+	margin: 0;
+	font-size: 13px;
+	font-weight: 600;
+}
 
-*/
+.otoracle-actions {
+	display: flex;
+	gap: 4px;
+}
+
+/* Buttons */
+.otoracle-btn {
+	padding: 3px 8px;
+	border-radius: 4px;
+	border: 1px solid var(--background-modifier-border);
+	background: var(--background-secondary);
+	color: var(--text-normal);
+	cursor: pointer;
+	font-size: 11px;
+	line-height: 1.5;
+	white-space: nowrap;
+}
+
+.otoracle-btn:hover { background: var(--background-modifier-hover); }
+.otoracle-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.otoracle-btn.primary {
+	background: var(--interactive-accent);
+	color: var(--text-on-accent);
+	border-color: var(--interactive-accent);
+}
+.otoracle-btn.primary:hover { background: var(--interactive-accent-hover); }
+
+.otoracle-btn.danger {
+	background: var(--text-error);
+	color: #fff;
+	border-color: var(--text-error);
+}
+
+.otoracle-btn.sm {
+	font-size: 10px;
+	padding: 2px 6px;
+}
+
+/* Body */
+.otoracle-body {
+	padding: 6px 0;
+	overflow-x: auto;
+}
+
+/* Table */
+.otoracle-table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 11px;
+}
+
+.otoracle-table th {
+	text-align: left;
+	padding: 4px 8px;
+	background: var(--background-secondary);
+	color: var(--text-muted);
+	font-weight: 500;
+	border-bottom: 1px solid var(--background-modifier-border);
+	white-space: nowrap;
+}
+
+.otoracle-table td {
+	padding: 5px 8px;
+	border-bottom: 1px solid var(--background-modifier-border-hover);
+	vertical-align: middle;
+}
+
+.otoracle-table tr:last-child td { border-bottom: none; }
+
+.otoracle-table td.mono {
+	font-family: var(--font-monospace);
+	font-size: 10px;
+	color: var(--text-muted);
+}
+
+.otoracle-table td.num {
+	text-align: right;
+	color: var(--text-muted);
+	min-width: 28px;
+}
+
+.otoracle-table td.time {
+	white-space: nowrap;
+	color: var(--text-faint);
+	font-size: 10px;
+}
+
+.otoracle-table td.actions { white-space: nowrap; }
+
+/* Status badges */
+.otoracle-badge {
+	display: inline-block;
+	padding: 1px 7px;
+	border-radius: 10px;
+	font-size: 10px;
+	font-weight: 500;
+	white-space: nowrap;
+}
+
+.otoracle-badge.completed,
+.otoracle-badge.published {
+	background: rgba(40, 167, 69, 0.15);
+	color: #28a745;
+}
+
+.otoracle-badge.running {
+	background: rgba(23, 162, 184, 0.15);
+	color: #17a2b8;
+	animation: otoracle-pulse 1.4s ease-in-out infinite;
+}
+
+.otoracle-badge.failed {
+	background: rgba(220, 53, 69, 0.15);
+	color: #dc3545;
+}
+
+.otoracle-badge.partial_failed {
+	background: rgba(255, 193, 7, 0.15);
+	color: #856404;
+}
+
+.otoracle-badge.pending,
+.otoracle-badge.skipped,
+.otoracle-badge.ingest {
+	background: rgba(108, 117, 125, 0.15);
+	color: #6c757d;
+}
+
+@keyframes otoracle-pulse {
+	0%, 100% { opacity: 1; }
+	50%       { opacity: 0.45; }
+}
+
+/* Detail row */
+.otoracle-detail-row td {
+	padding: 0 !important;
+	background: var(--background-secondary-alt);
+}
+
+.otoracle-detail-box {
+	padding: 10px 16px;
+	border-left: 3px solid var(--interactive-accent);
+}
+
+.otoracle-row {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 6px;
+	margin-bottom: 6px;
+}
+
+.otoracle-stat {
+	font-size: 11px;
+	color: var(--text-muted);
+}
+
+.otoracle-subsection {
+	font-size: 11px;
+	font-weight: 600;
+	margin: 6px 0 2px;
+}
+
+.otoracle-dl-list {
+	margin: 2px 0 8px 0;
+	padding-left: 16px;
+	font-size: 10px;
+	font-family: var(--font-monospace);
+	color: var(--text-error);
+}
+
+/* State messages */
+.otoracle-error {
+	color: var(--text-error);
+	font-size: 11px;
+}
+
+.otoracle-empty {
+	color: var(--text-faint);
+	text-align: center;
+	padding: 32px 16px;
+	font-size: 12px;
+}
+
+/* Modal */
+.otoracle-input {
+	width: 100%;
+	box-sizing: border-box;
+	margin-bottom: 8px;
+	padding: 6px 8px;
+	border-radius: 4px;
+	border: 1px solid var(--background-modifier-border);
+	background: var(--background-primary);
+	color: var(--text-normal);
+	font-size: 12px;
+}
+
+.otoracle-label {
+	font-size: 12px;
+	color: var(--text-muted);
+	margin: 8px 0 4px;
+}
+
+.otoracle-file-list {
+	list-style: none;
+	padding: 0;
+	margin: 0 0 12px;
+	max-height: 130px;
+	overflow-y: auto;
+	border: 1px solid var(--background-modifier-border);
+	border-radius: 4px;
+}
+
+.otoracle-file-list li {
+	border-bottom: 1px solid var(--background-modifier-border);
+}
+.otoracle-file-list li:last-child { border-bottom: none; }
+
+.otoracle-file-list a {
+	display: block;
+	padding: 4px 8px;
+	font-size: 11px;
+	font-family: var(--font-monospace);
+	color: var(--text-accent);
+	text-decoration: none;
+}
+.otoracle-file-list a:hover { background: var(--background-modifier-hover); }
+
+.otoracle-check-label {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	font-size: 12px;
+	margin: 8px 0;
+	cursor: pointer;
+}
+
+.otoracle-modal-footer {
+	display: flex;
+	justify-content: flex-end;
+	gap: 8px;
+	margin-top: 16px;
+}
