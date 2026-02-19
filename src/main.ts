@@ -1,6 +1,6 @@
 import { App, ItemView, Modal, Notice, Plugin, WorkspaceLeaf } from 'obsidian';
 import { spawn } from 'child_process';
-import { copyFile, mkdir, writeFile } from 'fs/promises';
+import { mkdir, writeFile } from 'fs/promises';
 import { join, basename, extname } from 'path';
 import {
 	DEFAULT_SETTINGS,
@@ -13,10 +13,6 @@ import {
 
 export const VIEW_TYPE = 'otoracle-dashboard';
 
-// ─── Electron File (has .path in desktop app) ─────────────────────────────────
-interface ElectronFile extends File {
-	path: string;
-}
 
 // ─── Pipeline types ────────────────────────────────────────────────────────────
 interface RunRow {
@@ -344,7 +340,7 @@ export class OtoracleDashboardView extends ItemView {
 // ─── Add PDFs Modal ─────────────────────────────────────────────────────────────
 
 interface FileEntry {
-	file: ElectronFile;
+	file: File;
 	title: string;
 	sourceType: SourceType;
 }
@@ -477,9 +473,9 @@ export class AddPDFsModal extends Modal {
 
 	private addFiles(files: FileList): void {
 		for (let i = 0; i < files.length; i++) {
-			const f = files[i] as ElectronFile;
+			const f = files[i] as File;
 			if (!f.name.toLowerCase().endsWith('.pdf')) continue;
-			if (this.entries.some(e => e.file.path === f.path)) continue; // dedupe
+			if (this.entries.some(e => e.file.name === f.name && e.file.size === f.size)) continue; // dedupe
 			this.entries.push({
 				file: f,
 				title: titleFromFilename(f.name),
@@ -558,7 +554,8 @@ export class AddPDFsModal extends Modal {
 			const destPaths: string[] = [];
 			for (const entry of this.entries) {
 				const dest = join(destDir, entry.file.name);
-				await copyFile(entry.file.path, dest);
+				const buf = Buffer.from(await entry.file.arrayBuffer());
+				await writeFile(dest, buf);
 				destPaths.push(dest);
 			}
 
