@@ -1,16 +1,34 @@
 import { App, PluginSettingTab, Setting } from 'obsidian';
 import OtoraclePipelinePlugin from './main';
 
+export type SourceType = 'textbook' | 'paper' | 'presentation' | 'dataset';
+
+export const SOURCE_TYPE_LABELS: Record<SourceType, string> = {
+	textbook:     'Textbook chapter',
+	paper:        'Research article',
+	presentation: 'Presentation / slides',
+	dataset:      'Dataset',
+};
+
+export interface SavedCollection {
+	name: string;
+	year: string;
+	authors: string;
+	defaultSourceType: SourceType;
+}
+
 export interface OtooracleSettings {
 	pipelineDir: string;
 	pythonPath: string;
 	autoRefreshSec: number;
+	savedCollections: SavedCollection[];
 }
 
 export const DEFAULT_SETTINGS: OtooracleSettings = {
 	pipelineDir: '/Users/gabolin/Documents/ent-pipeline',
 	pythonPath: '/Users/gabolin/Documents/ent-pipeline/.venv/bin/python3',
 	autoRefreshSec: 30,
+	savedCollections: [],
 };
 
 export class OtooracleSettingTab extends PluginSettingTab {

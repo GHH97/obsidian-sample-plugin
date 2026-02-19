@@ -206,6 +206,125 @@
 	font-size: 12px;
 }
 
+/* ── Add PDFs Modal ──────────────────────────────────────────────────────── */
+
+.otoracle-add-modal {
+	width: 580px;
+	max-width: 95vw;
+}
+
+/* Drop zone */
+.otoracle-dropzone {
+	border: 2px dashed var(--background-modifier-border);
+	border-radius: 8px;
+	padding: 24px 16px;
+	text-align: center;
+	cursor: pointer;
+	transition: border-color 0.15s, background 0.15s;
+	margin-bottom: 12px;
+}
+
+.otoracle-dropzone:hover,
+.otoracle-dropzone.drag-over {
+	border-color: var(--interactive-accent);
+	background: rgba(var(--interactive-accent-rgb, 100,100,200), 0.05);
+}
+
+.otoracle-dropzone-icon { font-size: 28px; line-height: 1; margin-bottom: 6px; }
+.otoracle-dropzone-label { color: var(--text-muted); font-size: 13px; margin: 0 0 8px; }
+
+/* File cards */
+.otoracle-file-cards {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	max-height: 220px;
+	overflow-y: auto;
+	margin-bottom: 12px;
+}
+
+.otoracle-file-card {
+	background: var(--background-secondary);
+	border: 1px solid var(--background-modifier-border);
+	border-radius: 6px;
+	padding: 8px 10px;
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}
+
+.otoracle-card-row {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.otoracle-card-row .otoracle-input {
+	flex: 1;
+	margin: 0;
+}
+
+/* Select */
+.otoracle-select {
+	padding: 3px 6px;
+	border-radius: 4px;
+	border: 1px solid var(--background-modifier-border);
+	background: var(--background-primary);
+	color: var(--text-normal);
+	font-size: 11px;
+	cursor: pointer;
+}
+
+/* Ghost danger button (remove) */
+.otoracle-btn.danger-ghost {
+	background: transparent;
+	border-color: transparent;
+	color: var(--text-muted);
+	padding: 2px 5px;
+}
+.otoracle-btn.danger-ghost:hover {
+	color: var(--text-error);
+	background: transparent;
+}
+
+/* Collection metadata section */
+.otoracle-meta-section {
+	border-top: 1px solid var(--background-modifier-border);
+	padding-top: 10px;
+	margin-bottom: 10px;
+}
+
+.otoracle-section-label {
+	font-size: 11px;
+	font-weight: 600;
+	color: var(--text-muted);
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	margin: 0 0 8px;
+}
+
+.otoracle-meta-row {
+	margin-bottom: 8px;
+}
+
+.otoracle-meta-row.two-col {
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+	gap: 10px;
+}
+
+.otoracle-field-label {
+	display: block;
+	font-size: 11px;
+	color: var(--text-muted);
+	margin-bottom: 3px;
+}
+
+.otoracle-authors {
+	resize: vertical;
+	min-height: 42px;
+}
+
 /* Modal */
 .otoracle-input {
 	width: 100%;
